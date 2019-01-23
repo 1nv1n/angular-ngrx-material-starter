@@ -1,26 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
-import { Actions, Effect } from '@ngrx/effects';
-import { Observable, of } from 'rxjs';
-import {
-  tap,
-  map,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  catchError
-} from 'rxjs/operators';
-
 import { LocalStorageService } from '@app/core';
-
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
+import { asyncScheduler, of } from 'rxjs';
+import {
+  catchError,
+  debounceTime,
+  map,
+  switchMap,
+  tap,
+  distinctUntilChanged
+} from 'rxjs/operators';
 import {
   ActionStockMarketRetrieve,
   ActionStockMarketRetrieveError,
   ActionStockMarketRetrieveSuccess,
-  STOCK_MARKET_KEY,
   StockMarketActionTypes
-} from './stock-market.reducer';
+} from './stock-market.actions';
 import { StockMarketService } from './stock-market.service';
+export const STOCK_MARKET_KEY = 'EXAMPLES.STOCKS';
 
 @Injectable()
 export class StockMarketEffects {
@@ -31,25 +29,21 @@ export class StockMarketEffects {
   ) {}
 
   @Effect()
-  retrieveStock(): Observable<Action> {
-    return this.actions$.ofType(StockMarketActionTypes.RETRIEVE).pipe(
-      tap((action: ActionStockMarketRetrieve) =>
+  retrieveStock = ({ debounce = 500, scheduler = asyncScheduler } = {}) =>
+    this.actions$.pipe(
+      ofType<ActionStockMarketRetrieve>(StockMarketActionTypes.RETRIEVE),
+      tap(action =>
         this.localStorageService.setItem(STOCK_MARKET_KEY, {
           symbol: action.payload.symbol
         })
       ),
-      distinctUntilChanged(),
-      debounceTime(500),
+      distinctUntilChanged((x, y) => x.payload.symbol === y.payload.symbol),
+      debounceTime(debounce, scheduler),
       switchMap((action: ActionStockMarketRetrieve) =>
-        this.service
-          .retrieveStock(action.payload.symbol)
-          .pipe(
-            map(stock => new ActionStockMarketRetrieveSuccess({ stock })),
-            catchError(error =>
-              of(new ActionStockMarketRetrieveError({ error }))
-            )
-          )
+        this.service.retrieveStock(action.payload.symbol).pipe(
+          map(stock => new ActionStockMarketRetrieveSuccess({ stock })),
+          catchError(error => of(new ActionStockMarketRetrieveError({ error })))
+        )
       )
     );
-  }
 }

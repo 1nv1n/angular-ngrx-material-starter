@@ -1,46 +1,7 @@
 import { v4 as uuid } from 'uuid';
-import { Action } from '@ngrx/store';
 
-export const TODOS_KEY = 'EXAMPLES.TODOS';
-
-export enum TodosActionTypes {
-  ADD = '[Todos] Add',
-  TOGGLE = '[Todos] Toggle',
-  REMOVE_DONE = '[Todos] Remove Done',
-  FILTER = '[Todos] Filter',
-  PERSIST = '[Todos] Persist'
-}
-
-export class ActionTodosAdd implements Action {
-  readonly type = TodosActionTypes.ADD;
-  constructor(public payload: { name: string }) {}
-}
-
-export class ActionTodosToggle implements Action {
-  readonly type = TodosActionTypes.TOGGLE;
-  constructor(public payload: { id: string }) {}
-}
-
-export class ActionTodosRemoveDone implements Action {
-  readonly type = TodosActionTypes.REMOVE_DONE;
-}
-
-export class ActionTodosFilter implements Action {
-  readonly type = TodosActionTypes.FILTER;
-  constructor(public payload: { filter: TodosFilter }) {}
-}
-
-export class ActionTodosPersist implements Action {
-  readonly type = TodosActionTypes.PERSIST;
-  constructor(public payload: { todos: Todo[] }) {}
-}
-
-export type TodosActions =
-  | ActionTodosAdd
-  | ActionTodosToggle
-  | ActionTodosRemoveDone
-  | ActionTodosFilter
-  | ActionTodosPersist;
+import { TodosActions, TodosActionTypes } from './todos.actions';
+import { Todo, TodosState } from './todos.model';
 
 export const initialState: TodosState = {
   items: [
@@ -55,8 +16,6 @@ export const initialState: TodosState = {
   filter: 'ALL'
 };
 
-export const selectorTodos = state => state.examples.todos;
-
 export function todosReducer(
   state: TodosState = initialState,
   action: TodosActions
@@ -67,11 +26,12 @@ export function todosReducer(
         ...state,
         items: [
           {
-            id: uuid(),
+            id: action.payload.id,
             name: action.payload.name,
             done: false
-          }
-        ].concat(state.items)
+          },
+          ...state.items
+        ]
       };
 
     case TodosActionTypes.TOGGLE:
@@ -95,17 +55,4 @@ export function todosReducer(
     default:
       return state;
   }
-}
-
-export interface Todo {
-  id: string;
-  name: string;
-  done: boolean;
-}
-
-export type TodosFilter = 'ALL' | 'DONE' | 'ACTIVE';
-
-export interface TodosState {
-  items: Todo[];
-  filter: TodosFilter;
 }

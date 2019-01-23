@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SettingsComponent } from './settings';
+import { SettingsContainerComponent } from './settings';
 
 const routes: Routes = [
   {
@@ -11,10 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'settings',
-    component: SettingsComponent,
-    data: {
-      title: 'Settings'
-    }
+    component: SettingsContainerComponent,
+    data: { title: 'anms.menu.settings' }
   },
   {
     path: 'examples',
@@ -28,7 +26,12 @@ const routes: Routes = [
 
 @NgModule({
   // useHash supports github.io demo page, remove in your app
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      scrollPositionRestoration: 'enabled'
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

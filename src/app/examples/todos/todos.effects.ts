@@ -1,32 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
-import { Actions, Effect } from '@ngrx/effects';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Action, select, Store } from '@ngrx/store';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { tap, withLatestFrom } from 'rxjs/operators';
 
 import { LocalStorageService } from '@app/core';
 
-import {
-  ActionTodosPersist,
-  TODOS_KEY,
-  TodosActionTypes
-} from './todos.reducer';
+import { State } from '../examples.state';
+import { TodosActionTypes } from './todos.actions';
+import { selectTodosState } from './todos.selectors';
+
+export const TODOS_KEY = 'EXAMPLES.TODOS';
 
 @Injectable()
 export class TodosEffects {
   constructor(
     private actions$: Actions<Action>,
+    private store: Store<State>,
     private localStorageService: LocalStorageService
   ) {}
 
   @Effect({ dispatch: false })
-  persistTodos(): Observable<Action> {
-    return this.actions$
-      .ofType(TodosActionTypes.PERSIST)
-      .pipe(
-        tap((action: ActionTodosPersist) =>
-          this.localStorageService.setItem(TODOS_KEY, action.payload.todos)
-        )
-      );
-  }
+  persistTodos = this.actions$.pipe(
+    ofType(
+      TodosActionTypes.ADD,
+      TodosActionTypes.FILTER,
+      TodosActionTypes.REMOVE_DONE,
+      TodosActionTypes.TOGGLE
+    ),
+    withLatestFrom(this.store.pipe(select(selectTodosState))),
+    tap(([action, todos]) => this.localStorageService.setItem(TODOS_KEY, todos))
+  );
 }

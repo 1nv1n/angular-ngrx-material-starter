@@ -34,10 +34,16 @@ mat-card {
   }
 
   a {
-    i {
+    fa-icon {
       position: relative;
-      top: -1px;
-      left: -3px;
+      bottom: 2px;
+      font-size: 16px;
+      margin: 6px;
     }
+  }
+
+  a[mat-icon-button] {
+    position: relative;
+    left: 5px;
   }
 }

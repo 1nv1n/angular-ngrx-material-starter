@@ -1,64 +1,77 @@
-import { Title } from '@angular/platform-browser';
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
-import { ActivationEnd, Router, NavigationEnd } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
+import browser from 'browser-detect';
+import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import {
   ActionAuthLogin,
   ActionAuthLogout,
-  selectorAuth,
-  routerTransition
+  routeAnimations,
+  AppState,
+  LocalStorageService,
+  selectIsAuthenticated
 } from '@app/core';
 import { environment as env } from '@env/environment';
 
-import { NIGHT_MODE_THEME, selectorSettings, SettingsState } from './settings';
+import {
+  ActionSettingsChangeLanguage,
+  ActionSettingsChangeAnimationsPageDisabled,
+  selectEffectiveTheme,
+  selectSettingsLanguage,
+  selectSettingsStickyHeader
+} from './settings';
 
 @Component({
   selector: 'anms-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [routerTransition]
+  animations: [routeAnimations]
 })
-export class AppComponent implements OnInit, OnDestroy {
-  private unsubscribe$: Subject<void> = new Subject<void>();
-
-  @HostBinding('class') componentCssClass;
-
+export class AppComponent implements OnInit {
   isProd = env.production;
   envName = env.envName;
   version = env.versions.app;
   year = new Date().getFullYear();
   logo = require('../assets/logo.png');
+  languages = ['en', 'de', 'sk', 'fr', 'es', 'pt-br', 'zh-cn'];
   navigation = [
-    { link: 'about', label: 'About' },
-    { link: 'features', label: 'Features' },
-    { link: 'examples', label: 'Examples' }
+    { link: 'about', label: 'anms.menu.about' },
+    { link: 'features', label: 'anms.menu.features' },
+    { link: 'examples', label: 'anms.menu.examples' }
   ];
   navigationSideMenu = [
     ...this.navigation,
-    { link: 'settings', label: 'Settings' }
+    { link: 'settings', label: 'anms.menu.settings' }
   ];
-  isAuthenticated;
+
+  isAuthenticated$: Observable<boolean>;
+  stickyHeader$: Observable<boolean>;
+  language$: Observable<string>;
+  theme$: Observable<string>;
 
   constructor(
-    public overlayContainer: OverlayContainer,
-    private store: Store<any>,
-    private router: Router,
-    private titleService: Title
+    private store: Store<AppState>,
+    private storageService: LocalStorageService
   ) {}
 
-  ngOnInit(): void {
-    this.subscribeToSettings();
-    this.subscribeToIsAuthenticated();
-    this.subscribeToRouterEvents();
+  private static isIEorEdgeOrSafari() {
+    return ['ie', 'edge', 'safari'].includes(browser().name);
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+  ngOnInit(): void {
+    this.storageService.testLocalStorage();
+    if (AppComponent.isIEorEdgeOrSafari()) {
+      this.store.dispatch(
+        new ActionSettingsChangeAnimationsPageDisabled({
+          pageAnimationsDisabled: true
+        })
+      );
+    }
+
+    this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
+    this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
+    this.language$ = this.store.pipe(select(selectSettingsLanguage));
+    this.theme$ = this.store.pipe(select(selectEffectiveTheme));
   }
 
   onLoginClick() {
@@ -69,69 +82,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.store.dispatch(new ActionAuthLogout());
   }
 
-  private subscribeToIsAuthenticated() {
-    this.store
-      .select(selectorAuth)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(auth => (this.isAuthenticated = auth.isAuthenticated));
-  }
-
-  private subscribeToSettings() {
-    this.store
-      .select(selectorSettings)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(settings => this.setTheme(settings));
-  }
-
-  private setTheme(settings: SettingsState) {
-    const { theme, autoNightMode } = settings;
-    const hours = new Date().getHours();
-    const effectiveTheme = (autoNightMode && (hours >= 20 || hours <= 6)
-      ? NIGHT_MODE_THEME
-      : theme
-    ).toLowerCase();
-    this.componentCssClass = effectiveTheme;
-    const classList = this.overlayContainer.getContainerElement().classList;
-    const toRemove = Array.from(classList).filter((item: string) =>
-      item.includes('-theme')
-    );
-    classList.remove(...toRemove);
-    classList.add(effectiveTheme);
-  }
-
-  private subscribeToRouterEvents() {
-    this.router.events
-      .pipe(
-        takeUntil(this.unsubscribe$),
-        filter(
-          event =>
-            event instanceof ActivationEnd || event instanceof NavigationEnd
-        )
-      )
-      .subscribe(event => {
-        if (event instanceof ActivationEnd) {
-          this.setPageTitle(event);
-        }
-
-        if (event instanceof NavigationEnd) {
-          this.trackPageView(event);
-        }
-      });
-  }
-
-  private setPageTitle(event: ActivationEnd) {
-    let lastChild = event.snapshot;
-    while (lastChild.children.length) {
-      lastChild = lastChild.children[0];
-    }
-    const { title } = lastChild.data;
-    this.titleService.setTitle(
-      title ? `${title} - ${env.appName}` : env.appName
-    );
-  }
-
-  private trackPageView(event: NavigationEnd) {
-    (<any>window).ga('set', 'page', event.urlAfterRedirects);
-    (<any>window).ga('send', 'pageview');
+  onLanguageSelect({ value: language }) {
+    this.store.dispatch(new ActionSettingsChangeLanguage({ language }));
   }
 }

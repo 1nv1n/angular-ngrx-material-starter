@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-import { environment as env } from '@env/environment';
-import { ANIMATE_ON_ROUTE_ENTER } from '@app/core';
+import { ROUTE_ANIMATIONS_ELEMENTS } from '@app/core';
+
+import { Feature, features } from './features.data';
 
 @Component({
   selector: 'anms-features',
   templateUrl: './features.component.html',
-  styleUrls: ['./features.component.scss']
+  styleUrls: ['./features.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeaturesComponent implements OnInit {
-  animateOnRouteEnter = ANIMATE_ON_ROUTE_ENTER;
-  versions = env.versions;
+  routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
+  features: Feature[] = features;
 
   ngOnInit() {}
 

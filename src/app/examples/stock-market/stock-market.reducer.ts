@@ -1,40 +1,13 @@
-import { Action } from '@ngrx/store';
-import { HttpErrorResponse } from '@angular/common/http';
-
-export const STOCK_MARKET_KEY = 'EXAMPLES.STOCKS';
-
-export enum StockMarketActionTypes {
-  RETRIEVE = '[Todos] Retrieve',
-  RETRIEVE_SUCCESS = '[Todos] Retrieve Success',
-  RETRIEVE_ERROR = '[Todos] Retrieve Error'
-}
-
-export class ActionStockMarketRetrieve implements Action {
-  readonly type = StockMarketActionTypes.RETRIEVE;
-  constructor(public payload: { symbol: string }) {}
-}
-
-export class ActionStockMarketRetrieveSuccess implements Action {
-  readonly type = StockMarketActionTypes.RETRIEVE_SUCCESS;
-  constructor(public payload: { stock: Stock }) {}
-}
-
-export class ActionStockMarketRetrieveError implements Action {
-  readonly type = StockMarketActionTypes.RETRIEVE_ERROR;
-  constructor(public payload: { error: HttpErrorResponse }) {}
-}
-
-export type StockMarketActions =
-  | ActionStockMarketRetrieve
-  | ActionStockMarketRetrieveSuccess
-  | ActionStockMarketRetrieveError;
+import { StockMarketState } from './stock-market.model';
+import {
+  StockMarketActions,
+  StockMarketActionTypes
+} from './stock-market.actions';
 
 export const initialState: StockMarketState = {
   symbol: 'GOOGL',
   loading: false
 };
-
-export const selectorStocks = state => state.examples.stocks;
 
 export function stockMarketReducer(
   state: StockMarketState = initialState,
@@ -69,19 +42,4 @@ export function stockMarketReducer(
     default:
       return state;
   }
-}
-
-export interface Stock {
-  symbol: string;
-  exchange: string;
-  last: string;
-  ccy: string;
-  change: string;
-}
-
-export interface StockMarketState {
-  symbol: string;
-  loading: boolean;
-  stock?: Stock;
-  error?: HttpErrorResponse;
 }

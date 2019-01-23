@@ -18,14 +18,11 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, 'coverage'),
-      reports: ['html', 'lcovonly'],
+      dir: require('path').join(__dirname, '../coverage'),
+      reports: ['html', 'lcovonly', 'json'],
       fixWebpackSourcePaths: true
     },
-    angularCli: {
-      environment: 'dev'
-    },
-    reporters: ['progress', 'kjhtml', 'spec'],
+    reporters: ['spec'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -37,7 +34,7 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     },
-    browserNoActivityTimeout: 30000,
+    browserNoActivityTimeout: 50000,
     singleRun: !isWatch
   });
 };
