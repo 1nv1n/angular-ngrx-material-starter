@@ -9,15 +9,16 @@ import {
   authLogin,
   authLogout,
   routeAnimations,
-  AppState,
   LocalStorageService,
   selectIsAuthenticated,
-  ActionSettingsChangeAnimationsPageDisabled,
   selectSettingsStickyHeader,
   selectSettingsLanguage,
-  selectEffectiveTheme,
-  ActionSettingsChangeLanguage
+  selectEffectiveTheme
 } from '../core/core.module';
+import {
+  actionSettingsChangeAnimationsPageDisabled,
+  actionSettingsChangeLanguage
+} from '../core/settings/settings.actions';
 
 @Component({
   selector: 'anms-root',
@@ -48,7 +49,7 @@ export class AppComponent implements OnInit {
   theme$: Observable<string>;
 
   constructor(
-    private store: Store<AppState>,
+    private store: Store,
     private storageService: LocalStorageService
   ) {}
 
@@ -60,7 +61,7 @@ export class AppComponent implements OnInit {
     this.storageService.testLocalStorage();
     if (AppComponent.isIEorEdgeOrSafari()) {
       this.store.dispatch(
-        new ActionSettingsChangeAnimationsPageDisabled({
+        actionSettingsChangeAnimationsPageDisabled({
           pageAnimationsDisabled: true
         })
       );
@@ -81,6 +82,6 @@ export class AppComponent implements OnInit {
   }
 
   onLanguageSelect({ value: language }) {
-    this.store.dispatch(new ActionSettingsChangeLanguage({ language }));
+    this.store.dispatch(actionSettingsChangeLanguage({ language }));
   }
 }

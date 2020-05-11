@@ -2,6 +2,59 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.1](https://github.com/tomastrajan/angular-ngrx-material-starter/compare/v9.0.0...v9.0.1) (2020-05-05)
+
+### Bug Fixes
+
+- **change-hours:** run change hours interval outside of angular zone ([74ece30](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/74ece301ea5c00d36a4e61ee050453f89a99926f))
+
+## [9.0.0](https://github.com/tomastrajan/angular-ngrx-material-starter/compare/v8.3.1...v9.0.0) (2020-02-20)
+
+### ⚠ BREAKING CHANGES
+
+- **dependencies:** update to Angular 9 and enable IVY / AOT by default
+
+### Features
+
+- **app:** use new TestBed.inject syntax, various improvements ([3695e80](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/3695e80dd18d61e1b66d3e51e12990ee938bb607))
+- **contributors:** add contributors ([342dcd9](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/342dcd9fa17df92367f504404889a75e4cf28f73))
+- **core:** import modules needed for initial app layout to CoreModule ([035920a](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/035920ab9ce579b25bf4b3ebbe34d0573d56e2a3))
+- **dependencies:** use Angular 9 (Ngrx, ...) ([c027da9](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/c027da97258c6970cc73ce5d8931cb9a6caf8a2e))
+
+### Bug Fixes
+
+- **ngrx:** bump version to beta.1 and fix tests ([5f25dff](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/5f25dff84257e15749755ffedf7af28465c88509))
+- **translations:** adding missing hebrew entries ([e9a45ac](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/e9a45ac5ba80b37240cc9ce2eaed35e765cb9873))
+
+### [8.3.1](https://github.com/tomastrajan/angular-ngrx-material-starter/compare/v8.3.0...v8.3.1) (2019-10-17)
+
+### Bug Fixes
+
+- **e2e:** bump protractor version ([0680214](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/0680214))
+- **examples:** add element error template ([7fe893f](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/7fe893f))
+
+## [8.3.0](https://github.com/tomastrajan/angular-ngrx-material-starter/compare/v8.2.0...v8.3.0) (2019-08-07)
+
+### Features
+
+- **examples:** add elements example ([9e238c3](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/9e238c3))
+
+## [8.2.0](https://github.com/tomastrajan/angular-ngrx-material-starter/compare/v8.1.2...v8.2.0) (2019-07-27)
+
+### Bug Fixes
+
+- **index:** add missing </div> ([4d6b7bc](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/4d6b7bc))
+
+### Features
+
+- **books:** use new ngrx features ([0fc5dc4](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/0fc5dc4))
+- **form:** use new ngrx features ([c47dd9e](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/c47dd9e))
+- **stock-market:** added new ngrx functions ([54272f8](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/54272f8))
+
+### Tests
+
+- **app:** fix all tests ([0961ff3](https://github.com/tomastrajan/angular-ngrx-material-starter/commit/0961ff3))
+
 ### [8.1.2](https://github.com/tomastrajan/angular-ngrx-material-starter/compare/v8.1.1...v8.1.2) (2019-07-03)
 
 ### Bug Fixes

@@ -5,6 +5,7 @@ import { Actions, getEffectsMetadata } from '@ngrx/effects';
 import { TestScheduler } from 'rxjs/testing';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
+import { NgZone } from '@angular/core';
 
 import {
   AnimationsService,
@@ -15,7 +16,7 @@ import {
 
 import { SettingsEffects, SETTINGS_KEY } from './settings.effects';
 import { SettingsState } from './settings.model';
-import { ActionSettingsChangeTheme, SettingsActions } from './settings.actions';
+import { actionSettingsChangeTheme } from './settings.actions';
 
 const scheduler = new TestScheduler((actual, expected) =>
   assert.deepStrictEqual(actual, expected)
@@ -29,6 +30,7 @@ describe('SettingsEffects', () => {
   let animationsService: jasmine.SpyObj<AnimationsService>;
   let translateService: jasmine.SpyObj<TranslateService>;
   let store: jasmine.SpyObj<Store<AppState>>;
+  let ngZone: jasmine.SpyObj<NgZone>;
 
   beforeEach(() => {
     router = {
@@ -51,25 +53,8 @@ describe('SettingsEffects', () => {
     ]);
     translateService = jasmine.createSpyObj('TranslateService', ['use']);
     store = jasmine.createSpyObj('store', ['pipe']);
-  });
-
-  describe('persistSettings', () => {
-    it('should not dispatch any action', () => {
-      const actions = new Actions<SettingsActions>();
-      const effect = new SettingsEffects(
-        actions,
-        store,
-        router,
-        overlayContainer,
-        localStorageService,
-        titleService,
-        animationsService,
-        translateService
-      );
-      const metadata = getEffectsMetadata(effect);
-
-      expect(metadata.persistSettings.dispatch).toEqual(false);
-    });
+    ngZone = jasmine.createSpyObj('mockNgZone', ['run', 'runOutsideAngular']);
+    ngZone.run.and.callFake(fn => fn());
   });
 
   it('should call methods on LocalStorageService for PERSIST action', () => {
@@ -88,7 +73,7 @@ describe('SettingsEffects', () => {
         hour: 12
       };
       store.pipe.and.returnValue(of(settings));
-      const persistAction = new ActionSettingsChangeTheme({ theme: 'DEFAULT' });
+      const persistAction = actionSettingsChangeTheme({ theme: 'DEFAULT' });
       const source = cold('a', { a: persistAction });
       const actions = new Actions(source);
       const effect = new SettingsEffects(
@@ -99,7 +84,8 @@ describe('SettingsEffects', () => {
         localStorageService,
         titleService,
         animationsService,
-        translateService
+        translateService,
+        ngZone
       );
 
       effect.persistSettings.subscribe(() => {
