@@ -1,0 +1,140 @@
+<div class="container tab-container">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h3>
+          <fa-icon [icon]="['fas','desktop']"></fa-icon>&nbsp;&nbsp;DESKTOP
+        </h3>
+      </ng-template>
+      <div class="container">
+        <div class="row align-items-end">
+          <div *ngFor="let project of appProjects" class="col-md-6 col-lg-4" [ngClass]="routeAnimationsElements">
+            <mat-card mat-ripple>
+              <mat-card-title>
+                {{ project.name }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ project.subtitle}} &nbsp;&nbsp; <code>{{ project.license }}</code>
+              </mat-card-subtitle>
+              <mat-card-content>
+                {{ project.description | translate }}
+              </mat-card-content>
+              <mat-card-actions>
+                <a *ngIf="project.github" matTooltip="GitHub" mat-stroked-button [href]="project.github"
+                  rel="noopener noreferrer" target="_blank">
+                  <fa-icon [icon]="['fab','github']"></fa-icon>
+                </a>
+                <a *ngIf="project.github" mat-stroked-button [href]="project.sgAPIURL" matBadge="{{ project.sgCount }}"
+                  matBadgeSize="medium" matBadgeOverlap="true" matBadgePosition="after above"
+                  matTooltip="Stargazer Count" rel="noopener noreferrer" target="_blank">
+                  <fa-icon [icon]="['fas','star']"></fa-icon>
+                </a>
+              </mat-card-actions>
+              <mat-card-footer>
+                <div class="row">
+                  <mat-chip-list>
+                    <div *ngFor="let tag of project.tags">
+                      <a [href]="tag.link">
+                        <mat-chip>{{ tag.label }}</mat-chip>
+                      </a>
+                    </div>
+                  </mat-chip-list>
+                </div>
+              </mat-card-footer>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h3>
+          <fa-icon [icon]="['fas','window-maximize']"></fa-icon>&nbsp;&nbsp;WEB
+        </h3>
+      </ng-template>
+      <div class="container">
+        <div class="row align-items-end">
+          <div *ngFor="let project of webProjects" class="col-md-6 col-lg-4">
+            <mat-card mat-ripple>
+              <mat-card-title>
+                {{ project.name }}
+              </mat-card-title>
+              <mat-card-content>
+                {{ project.description | translate }}
+              </mat-card-content>
+              <mat-card-actions>
+                <a *ngIf="project.link" matTooltip="Link" mat-stroked-button [href]="project.link"
+                  rel="noopener noreferrer" target="_blank">
+                  <fa-icon [icon]="['fas','link']"></fa-icon>
+                </a>
+                <a *ngIf="project.feature" mat-stroked-button [routerLink]="project.feature" matTooltip="Features">
+                  <fa-icon [icon]="['fas','th']"></fa-icon>
+                </a>
+              </mat-card-actions>
+              <mat-card-footer>
+                <div class="row">
+                  <mat-chip-list>
+                    <div *ngFor="let tag of project.tags">
+                      <a [href]="tag.link">
+                        <mat-chip>{{ tag.label }}</mat-chip>
+                      </a>
+                    </div>
+                  </mat-chip-list>
+                </div>
+              </mat-card-footer>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h3>
+          <fa-icon [icon]="['fas','mobile-alt']"></fa-icon>&nbsp;&nbsp;MOBILE
+        </h3>
+      </ng-template>
+      <div class="container">
+        <div class="row align-items-end">
+          <div *ngFor="let project of mobileProjects" class="col-md-6 col-lg-4" [ngClass]="routeAnimationsElements">
+            <mat-card mat-ripple>
+              <mat-card-title>
+                {{ project.name }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ project.subtitle}} &nbsp;&nbsp; <code>{{ project.license }}</code>
+              </mat-card-subtitle>
+              <mat-card-content>
+                {{ project.description | translate }}
+              </mat-card-content>
+              <mat-card-actions>
+                <a *ngIf="project.github" matTooltip="GitHub" mat-stroked-button [href]="project.github"
+                  rel="noopener noreferrer" target="_blank">
+                  <fa-icon [icon]="['fab','github']"></fa-icon>
+                </a>
+                <a *ngIf="project.sgAPIURL" mat-stroked-button [href]="project.sgAPIURL" matBadge="{{ project.sgCount }}"
+                  matBadgeSize="medium" matBadgeOverlap="true" matBadgePosition="after above"
+                  matTooltip="Stargazer Count" rel="noopener noreferrer" target="_blank">
+                  <fa-icon [icon]="['fas','star']"></fa-icon>
+                </a>
+                <a *ngIf="project.psURL" mat-stroked-button [href]="project.psURL" matTooltip="Google Play Store Link" rel="noopener noreferrer" target="_blank">
+                  <fa-icon [icon]="['fab','google-play']"></fa-icon>
+                </a>
+              </mat-card-actions>
+              <mat-card-footer>
+                <div class="row">
+                  <mat-chip-list>
+                    <div *ngFor="let tag of project.tags">
+                      <a [href]="tag.link">
+                        <mat-chip>{{ tag.label }}</mat-chip>
+                      </a>
+                    </div>
+                  </mat-chip-list>
+                </div>
+              </mat-card-footer>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

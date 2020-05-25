@@ -1,0 +1,61 @@
+@import '../../../../styles';
+
+.container {
+  margin-top: 20px;
+}
+
+.tab-container {
+  margin-top: 10vh;
+}
+
+.main-heading {
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+}
+
+mat-card {
+  margin: 0 0 20px 0;
+
+  mat-card-title {
+    position: relative;
+
+    code {
+      position: absolute;
+      top: 11px;
+      right: 0;
+      float: right;
+      font-size: 8px;
+    }
+  }
+
+  mat-card-footer {
+    margin-left: 10px;
+    margin-bottom: 2px;
+
+    mat-chip-list {
+      mat-chip {
+        font-size: 12px;
+      }
+    }
+  }
+
+  @media (max-width: map-get($grid-breakpoints, sm)) {
+    mat-card-subtitle {
+      min-height: auto;
+    }
+  }
+
+  a {
+    fa-icon {
+      position: relative;
+      bottom: 2px;
+      font-size: 16px;
+      margin: 6px;
+    }
+  }
+
+  a[mat-icon-button] {
+    position: relative;
+    left: 5px;
+  }
+}

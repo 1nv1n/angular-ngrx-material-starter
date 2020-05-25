@@ -1,0 +1,6 @@
+{
+  "hosting": {
+    "public": "dist/nvn-website",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}

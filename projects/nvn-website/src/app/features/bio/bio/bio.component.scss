@@ -1,0 +1,79 @@
+@import '../../../../styles-variables';
+
+h3 {
+  text-transform: uppercase;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.bio-category-container {
+  margin-top: 8vh;
+}
+
+.main-heading {
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+}
+
+.exp-panel {
+  margin-top: 20px;
+}
+
+@media (max-width: map-get($grid-breakpoints, sm)) {
+  .bio-category-container {
+    margin-top: 5vh;
+  }
+}
+
+mat-card {
+  margin: 0 0 20px 0;
+
+  mat-card-title {
+    position: relative;
+    font-size: 18px;
+
+    code {
+      position: absolute;
+      top: 11px;
+      right: 0;
+      float: right;
+      font-size: 12px;
+    }
+  }
+  mat-card-content {
+    mat-chip-list {
+      mat-chip {
+        font-size: 12px;
+      }
+    }
+  }
+  mat-card-actions {
+    mat-chip-list {
+      mat-chip {
+        font-size: 10px;
+      }
+    }
+  }
+
+  @media (max-width: map-get($grid-breakpoints, sm)) {
+    mat-card-subtitle {
+      min-height: auto;
+    }
+  }
+
+  a {
+    fa-icon {
+      position: relative;
+      bottom: 2px;
+      font-size: 16px;
+      margin: 6px;
+    }
+  }
+
+  a[mat-icon-button] {
+    position: relative;
+    left: 5px;
+  }
+}

@@ -1,0 +1,9 @@
+$nvn-brownred-primary: mat-palette($mat-brown, 800, 500, 900);
+$nvn-brownred-accent: mat-palette($mat-red, 500);
+$nvn-brownred-warn: mat-palette($mat-pink, 400);
+
+$nvn-brownred-theme: mat-light-theme(
+  $nvn-brownred-primary,
+  $nvn-brownred-accent,
+  $nvn-brownred-warn
+);

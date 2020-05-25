@@ -1,0 +1,92 @@
+<div [class]="'theme-wrapper ' + (theme$ | async)">
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="push">
+      <div class="branding">
+        <!-- <img [src]="logo" [alt]="logo"/> -->
+        <!-- <span>{{ 'nvn.title.short' | translate}}</span> -->
+      </div>
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let item of navigation" (click)="sidenav.close()" [routerLink]="[item.link]"
+          routerLinkActive="active">
+          <span class="menu-list-item">{{item.label | translate}}</span>
+          <!-- <button mat-raised-button class="nav-button">
+            {{item.label | translate}}
+          </button> -->
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="wrapper">
+      <div class="toolbar" [style.position]="(stickyHeader$ | async) ? 'fixed' : 'inherit'"
+        [class.mat-elevation-z4]="(stickyHeader$ | async)">
+        <mat-toolbar color="primary">
+          <!-- <button mat-icon-button class="d-md-none" (click)="sidenav.open()"> -->
+          <span>
+            <button matTooltip="Navigation List" mat-button (click)="sidenav.open()">
+              <fa-icon icon="bars"></fa-icon>&nbsp;
+            </button>
+          </span>
+
+          <span>
+            <button *ngIf="!isHome" mat-icon-button matTooltip="Home/About" routerLink="">
+              <!-- {{ 'nvn.title.long' | translate}} -->
+              <fa-icon [icon]="['fas','house-user']"></fa-icon>
+            </button>
+          </span>
+
+          <!-- Extra small screen -->
+          <!-- <span routerLink="" class="branding spacer center d-inline d-sm-none">
+            <img [src]="logo" [alt]="logo"/>
+          </span> -->
+
+          <!-- Small screen -->
+          <!-- <span routerLink="" class="branding spacer center d-none d-sm-inline d-md-none">
+            <img [src]="logo" [alt]="logo"/>
+            {{'nvn.title.short' | translate }}
+          </span> -->
+
+          <!-- Regular screen -->
+          <!-- <span routerLink="" class="branding spacer d-none d-md-inline">
+            <img [src]="logo" [alt]="logo"/>
+            {{ 'nvn.title.long' | translate}}
+          </span> -->
+
+          <!-- <span class="d-none d-md-inline">
+            <button mat-button class="nav-button" *ngFor="let item of navigation" [routerLink]="[item.link]"
+              routerLinkActive="active">
+              {{item.label | translate}}
+            </button>
+          </span> -->
+
+          <span class="fill-remaining-space"></span>
+
+          <span>
+            <button mat-icon-button matTooltip="Site Settings" routerLink="settings">
+              <fa-icon icon="cogs"></fa-icon>
+            </button>
+          </span>
+        </mat-toolbar>
+      </div>
+
+      <div class="content"
+        [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.data && o.activatedRoute.routeConfig.data.title">
+        <router-outlet #o="outlet"></router-outlet>
+      </div>
+
+      <div class="footer">
+        <div class="row">
+          <div class="col-12 signature">
+            &#169; <span class="year">{{year}}</span> Neil Pathare
+            <br class="d-block d-sm-none">
+            <a [matTooltip]="'nvn.footer.changelog' | translate" matTooltipPosition="before"
+              href="https://github.com/1nv1n/website/blob/master/CHANGELOG.md">
+              <fa-icon icon="rocket"></fa-icon>
+              {{version}} <span *ngIf="!isProd">[{{envName}}]</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-container>
+</div>

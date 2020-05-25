@@ -1,0 +1,9 @@
+$nvn-purpleamber-primary: mat-palette($mat-deep-purple);
+$nvn-purpleamber-accent: mat-palette($mat-amber, 800);
+$nvn-purpleamber-warn: mat-palette($mat-red, 400);
+
+$nvn-purpleamber-theme: mat-light-theme(
+  $nvn-purpleamber-primary,
+  $nvn-purpleamber-accent,
+  $nvn-purpleamber-warn
+);

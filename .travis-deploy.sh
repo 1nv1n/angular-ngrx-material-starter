@@ -13,12 +13,12 @@ else
 
   # go to the directory which contains build artifacts and create a *new* Git repo
   # directory may be different based on your particular build process
-  cd dist/angular-ngrx-material-starter
+  cd dist/nvn-website
   git init
 
   # inside this git repo we'll pretend to be a new user
   git config user.name "Travis CI"
-  git config user.email "tomas.trajan@gmail.com"
+  git config user.email "tneil.pathare@outlook.com"
 
   # The first and only commit to this new Git repo contains all the
   # files present with the commit message "Deploy to GitHub Pages".

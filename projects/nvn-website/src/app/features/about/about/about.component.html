@@ -1,0 +1,25 @@
+<div class="background">
+  <div class="gradient">
+    <div class="container">
+      <span></span>
+    </div>
+  </div>
+  <div class="container home-category-container">
+      <span>
+        <h4 rtl class="main-heading"></h4>
+      </span>
+      <div class="row align-items-end">
+        <div *ngFor="let category of categoryList" class="col-md-6 col-lg-4" [ngClass]="routeAnimationsElements">
+          <a [routerLink]="[category.link]">
+            <mat-card mat-ripple>
+              <mat-card-title>
+                {{category.name | translate}}
+              </mat-card-title>
+              <!-- <mat-card-content rtl>
+                {{ category.description | translate }}
+              </mat-card-content> -->
+            </mat-card>
+          </a>
+        </div>
+      </div>
+  </div>

@@ -1,0 +1,5 @@
+$nvn-primary: mat-palette($mat-grey, 900, 600, 900);
+$nvn-accent: mat-palette($mat-blue-grey, A200, A100, A400);
+$nvn-warn: mat-palette($mat-red, 400);
+
+$nvn-theme: mat-dark-theme($nvn-primary, $nvn-accent, $nvn-warn);
