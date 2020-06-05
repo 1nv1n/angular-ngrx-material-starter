@@ -20,7 +20,7 @@ $custom-typography: mat-typography-config(
 @import './app/app/app.component.scss-theme';
 @import './app/shared/big-input/big-input/big-input.component.scss-theme';
 
-@import url(http://fonts.googleapis.com/css?family=Roboto|Ubuntu:400, 700);
+@import url('http://fonts.googleapis.com/css?family=Roboto|Ubuntu:400, 700');
 $roberto-font: 'Roboto', sans-serif;
 $ubuntu-font: 'Ubuntu', sans-serif;
 
