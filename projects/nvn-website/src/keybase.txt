@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/1nv1n
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://1nv1n.com
+  * I am 1nv1n (https://keybase.io/1nv1n) on keybase.
+  * I have a public key ASA5ftnaxhLj6doTnpRC6q4iDkGj3zJC4aPlH1RUK5FA6Ao
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120397ed9dac612e3e9da139e9442eaae220e41a3df3242e1a3e51f54542b9140e80a",
+      "host": "keybase.io",
+      "kid": "0120397ed9dac612e3e9da139e9442eaae220e41a3df3242e1a3e51f54542b9140e80a",
+      "uid": "f9e51f95231d933a93f4ef2850df2019",
+      "username": "1nv1n"
+    },
+    "merkle_root": {
+      "ctime": 1604975739,
+      "hash": "bdb96fe8c24f45100a8eb180d75272f57e4751803bc959a7f38778e930f839153c3afe99d0442bb058db58430a8f81e9e9c7db19992e7295c946f49c96386686",
+      "hash_meta": "11c9c1a06742f761ea0b39b03e66bb6c8a2d1fe649ba978616183d5815c0b814",
+      "seqno": 18069800
+    },
+    "service": {
+      "entropy": "/1uUbZwvEAzpDqgdIK5VxPE0",
+      "hostname": "1nv1n.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.5.0"
+  },
+  "ctime": 1604975785,
+  "expire_in": 504576000,
+  "prev": "aca7156822f74a31796f353f08d6ec6e2da435bc057a85fb2bc2a79c79a21333",
+  "seqno": 10,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgOX7Z2sYS4+naE56UQuquIg5Bo98yQuGj5R9UVCuRQOgKp3BheWxvYWTESpcCCsQgrKcVaCL3SjF5bzU/CNbsbi2kNbwFeoX7K8KnnHmiEzPEILkpdQhEgCv+6kDLIR6u2S/91si02Sy5egrqAd1d8R1hAgHCo3NpZ8RAx2vSajyykrNF89zzwHNG4fz85OkeGtN0iYAiatTBemsbp1fx6aofuiZywW3eZgbVyBdgRBACweCXYCPpKsqjBahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIIxCKvvHGJ36f8xlCl7b+Rn3p5BofJeKlP2CT7lpd9abo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/1nv1n
+
+==================================================================
