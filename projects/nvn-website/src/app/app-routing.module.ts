@@ -10,37 +10,41 @@ const routes: Routes = [
   {
     path: 'about',
     loadChildren: () =>
-      import('./features/about/about.module').then(m => m.AboutModule)
+      import('./features/about/about.module').then((m) => m.AboutModule)
   },
   {
     path: 'projects',
     loadChildren: () =>
-      import('./features/projects/projects.module').then(m => m.ProjectsModule)
+      import('./features/projects/projects.module').then(
+        (m) => m.ProjectsModule
+      )
   },
   {
     path: 'builds',
     loadChildren: () =>
-      import('./features/builds/builds.module').then(m => m.BuildsModule)
+      import('./features/builds/builds.module').then((m) => m.BuildsModule)
   },
   {
     path: 'bio',
     loadChildren: () =>
-      import('./features/bio/bio.module').then(m => m.BioModule)
+      import('./features/bio/bio.module').then((m) => m.BioModule)
   },
   {
     path: 'collections',
     loadChildren: () =>
-      import('./features/contact/contact.module').then(m => m.ContactModule)
+      import('./features/contact/contact.module').then((m) => m.ContactModule)
   },
   {
     path: 'contact',
     loadChildren: () =>
-      import('./features/contact/contact.module').then(m => m.ContactModule)
+      import('./features/contact/contact.module').then((m) => m.ContactModule)
   },
   {
     path: 'settings',
     loadChildren: () =>
-      import('./features/settings/settings.module').then(m => m.SettingsModule)
+      import('./features/settings/settings.module').then(
+        (m) => m.SettingsModule
+      )
   },
   {
     path: '**',

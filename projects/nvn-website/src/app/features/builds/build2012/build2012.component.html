@@ -1,0 +1,83 @@
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h4>Gallery</h4>
+                    </mat-panel-title>
+                    <mat-panel-description></mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-card>
+                    <gallery [items]="images2012" thumbPosition="left"></gallery>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h4>Core Specs</h4>
+                    </mat-panel-title>
+                    <mat-panel-description></mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-card>
+                    <mat-card-content>
+                        <mat-chip-list>
+                            <mat-chip>3rd Gen. Intel® Ivy Bridge Core™ i7-3610QM (2.3GHz - 3.3GHz)</mat-chip>
+                            <mat-chip>AMD Radeon HD 7970M (2048 MB) GDDR5 DX11</mat-chip>
+                            <mat-chip>16 GB - DDR3 1600MHz Dual Channel Memory (Samsung Black)</mat-chip>
+                            <mat-chip>120 GB Intel 520 Series Solid State Drive (SSD2 Serial-ATA III)</mat-chip>
+                            <mat-chip>3 x Western Digital 2.5" Blue 1 TB HDD</mat-chip>
+                            <mat-chip>Western Digital 2.5" Black 750 GB HDD</mat-chip>
+                            <mat-chip>Combo Dual Layer SuperMulti DVDRW/CDRW Drive</mat-chip>
+                            <mat-chip>Intel® Advanced-N 6235 - 802.11A/B/G/N Wireless LAN Module + Bluetooth</mat-chip>
+                            <mat-chip>17.3" FHD 16:9 (1920x1080)</mat-chip>
+                            <mat-chip>Sound Blaster Compatible 3D Audio</mat-chip>
+                            <mat-chip>XoticPC Sager NP9170 / Clevo P170EM</mat-chip>
+                        </mat-chip-list>
+                    </mat-card-content>
+                </mat-card>
+            </mat-expansion-panel>
+            <br />
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h4>Cooling</h4>
+                    </mat-panel-title>
+                    <mat-panel-description></mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-card>
+                    <mat-card-content>
+                        <mat-chip-list>
+                            <mat-chip>IC Diamond Thermal Compound - CPU + GPU</mat-chip>
+                        </mat-chip-list>
+                    </mat-card-content>
+                </mat-card>
+            </mat-expansion-panel>
+            <br />
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h4>Notes</h4>
+                    </mat-panel-title>
+                    <mat-panel-description></mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-card>
+                    <mat-card-content>
+                        <p>Keyboard needed to be RMA'd. 7970M driver had a lot of stability issues.</p>
+                    </mat-card-content>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-card-content>
+        <mat-card-actions>
+            <a mat-raised-button
+                href="https://www.reddit.com/r/battlestations/comments/1ldeaa/heres_mine_while_i_save_up_for_full_build/">Reddit</a>
+        </mat-card-actions>
+    </mat-card>
+</div>

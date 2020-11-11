@@ -6,16 +6,18 @@ import { SharedModule } from '../../shared/shared.module';
 
 import { HomeComponent } from './home/home.component';
 import { BuildsComponent } from './builds/builds.component';
-import { Build820Component } from './build820/build820.component';
-import { BuildP5Component } from './buildp5/buildp5.component';
+import { Build2012Component } from './build2012/build2012.component';
+import { Build2014Component } from './build2014/build2014.component';
+import { Build2016Component } from './build2016/build2016.component';
 import { BuildsRoutingModule } from './builds-routing.module';
 
 @NgModule({
   declarations: [
     HomeComponent,
     BuildsComponent,
-    Build820Component,
-    BuildP5Component
+    Build2012Component,
+    Build2014Component,
+    Build2016Component
   ],
   imports: [CommonModule, SharedModule, BuildsRoutingModule, GalleryModule]
 })

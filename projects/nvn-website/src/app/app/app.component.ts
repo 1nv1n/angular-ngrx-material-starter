@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {
     // Detect current route
-    router.events.subscribe(val => {
+    router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         let routerPathSplit = val.url.split('/');
         if (

@@ -145,7 +145,7 @@ export {
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({
-          name: 'Neil Pathare'
+          name: 'NP'
         }),
 
     // 3rd party

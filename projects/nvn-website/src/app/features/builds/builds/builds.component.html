@@ -1,16 +1,19 @@
 <div class="container" [ngClass]="routeAnimationsElements">
-    <div class="row align-items-end">
-        <div *ngFor="let build of buildList" class="col-md-6 col-lg-4" [ngClass]="routeAnimationsElements">
-          <a [routerLink]="[build.link]">
-            <mat-card mat-ripple>
-              <mat-card-title>
-                {{build.name | translate}}
-              </mat-card-title>
-              <!-- <mat-card-content rtl>
-                {{ build.description | translate }}
-              </mat-card-content> -->
-            </mat-card>
-          </a>
-        </div>
-      </div>
+  <div class="row align-items-end">
+    <div *ngFor="let build of buildList" class="col-md-6 col-lg-4" [ngClass]="routeAnimationsElements">
+      <a [routerLink]="[build.link]">
+        <mat-card mat-ripple>
+          <mat-card-header>
+            <div mat-card-avatar class={{build.class}}></div>
+            <mat-card-title>
+              {{build.name | translate}}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{build.year | translate}}
+            </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </a>
+    </div>
+  </div>
 </div>

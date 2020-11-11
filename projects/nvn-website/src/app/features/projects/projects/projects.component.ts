@@ -35,7 +35,7 @@ export class ProjectsComponent implements OnInit {
   headers: string[];
 
   constructor(private http: HttpClient) {
-    appProjects.forEach(project => {
+    appProjects.forEach((project) => {
       // http.get(project.sgAPIURL, { observe: 'response' }).subscribe(resp => {
       //   this.config = { ...resp };
       //   let body = this.config.body;

@@ -1,6 +1,7 @@
 @import '../../../../styles-variables';
 
-h3 {
+h4,
+h5 {
   text-transform: uppercase;
 }
 
@@ -19,6 +20,11 @@ h3 {
 
 .exp-panel {
   margin-top: 20px;
+}
+
+.contact-card {
+  border: 1px;
+  margin: 2em;
 }
 
 @media (max-width: map-get($grid-breakpoints, sm)) {
