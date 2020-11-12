@@ -127,7 +127,7 @@ export const websiteFeatures: WebsiteFeature[] = [
     documentation: 'https://murhafsousli.github.io/ngx-gallery/#/'
   },
   {
-    name: 'Eslint',
+    name: 'ESLint',
     version: env.versions.eslint,
     description: 'anms.features.eslint',
     github: 'https://github.com/eslint/eslint',
