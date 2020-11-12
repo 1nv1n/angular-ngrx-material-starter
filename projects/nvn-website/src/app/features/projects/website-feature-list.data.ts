@@ -129,7 +129,8 @@ export const websiteFeatures: WebsiteFeature[] = [
   {
     name: 'ESLint',
     version: env.versions.eslint,
-    description: 'anms.features.eslint',
+    description:
+      'Static code analysis tool for identifying problematic patterns found in JavaScript code.',
     github: 'https://github.com/eslint/eslint',
     documentation: 'https://eslint.org/docs/user-guide/getting-started'
   }
