@@ -125,5 +125,12 @@ export const websiteFeatures: WebsiteFeature[] = [
       'An Angular gallery, simplifies the process of creating beautiful galleries.',
     github: 'https://github.com/murhafsousli/ngx-gallery',
     documentation: 'https://murhafsousli.github.io/ngx-gallery/#/'
+  },
+  {
+    name: 'Eslint',
+    version: env.versions.eslint,
+    description: 'anms.features.eslint',
+    github: 'https://github.com/eslint/eslint',
+    documentation: 'https://eslint.org/docs/user-guide/getting-started'
   }
 ];
