@@ -2,13 +2,14 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SharedModule } from '../../../shared/shared.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
-import { WebsiteFeatureListComponent } from './website-feature-list.component';
+import { ChildComponent } from '../child/child.component';
+import { ParentComponent } from './parent.component';
 
-describe('FeatureListComponent', () => {
-  let component: WebsiteFeatureListComponent;
-  let fixture: ComponentFixture<WebsiteFeatureListComponent>;
+describe('ParentComponent', () => {
+  let component: ParentComponent;
+  let fixture: ComponentFixture<ParentComponent>;
 
   beforeEach(
     waitForAsync(() => {
@@ -18,13 +19,13 @@ describe('FeatureListComponent', () => {
           NoopAnimationsModule,
           TranslateModule.forRoot()
         ],
-        declarations: [WebsiteFeatureListComponent]
+        declarations: [ParentComponent, ChildComponent]
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WebsiteFeatureListComponent);
+    fixture = TestBed.createComponent(ParentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
