@@ -2,13 +2,14 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SharedModule } from '../../../shared/shared.module';
+import { NotificationService } from '../../../../core/core.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
-import { WebsiteFeatureListComponent } from './website-feature-list.component';
+import { NotificationsComponent } from './notifications.component';
 
-describe('FeatureListComponent', () => {
-  let component: WebsiteFeatureListComponent;
-  let fixture: ComponentFixture<WebsiteFeatureListComponent>;
+describe('NotificationsComponent', () => {
+  let component: NotificationsComponent;
+  let fixture: ComponentFixture<NotificationsComponent>;
 
   beforeEach(
     waitForAsync(() => {
@@ -18,18 +19,19 @@ describe('FeatureListComponent', () => {
           NoopAnimationsModule,
           TranslateModule.forRoot()
         ],
-        declarations: [WebsiteFeatureListComponent]
+        providers: [NotificationService],
+        declarations: [NotificationsComponent]
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WebsiteFeatureListComponent);
+    fixture = TestBed.createComponent(NotificationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

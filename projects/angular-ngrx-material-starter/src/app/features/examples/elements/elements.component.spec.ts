@@ -1,35 +1,39 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { LazyElementsModule } from '@angular-extensions/elements';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../../../shared/shared.module';
 
-import { WebsiteFeatureListComponent } from './website-feature-list.component';
+import { ElementsComponent } from './elements.component';
 
-describe('FeatureListComponent', () => {
-  let component: WebsiteFeatureListComponent;
-  let fixture: ComponentFixture<WebsiteFeatureListComponent>;
+describe('ElementsComponent', () => {
+  let component: ElementsComponent;
+  let fixture: ComponentFixture<ElementsComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
         imports: [
           SharedModule,
           NoopAnimationsModule,
-          TranslateModule.forRoot()
+          TranslateModule.forRoot(),
+          LazyElementsModule
         ],
-        declarations: [WebsiteFeatureListComponent]
+        declarations: [ElementsComponent]
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WebsiteFeatureListComponent);
+    fixture = TestBed.createComponent(ElementsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

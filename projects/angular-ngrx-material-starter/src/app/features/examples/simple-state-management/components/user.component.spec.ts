@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+
+import { UserComponent } from './user.component';
+import { SharedModule } from '../../../../shared/shared.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
+import { UserService } from '../user.service';
 
-import { SharedModule } from '../../../shared/shared.module';
-
-import { WebsiteFeatureListComponent } from './website-feature-list.component';
-
-describe('FeatureListComponent', () => {
-  let component: WebsiteFeatureListComponent;
-  let fixture: ComponentFixture<WebsiteFeatureListComponent>;
+describe('UserComponent', () => {
+  let component: UserComponent;
+  let fixture: ComponentFixture<UserComponent>;
 
   beforeEach(
     waitForAsync(() => {
@@ -18,18 +18,19 @@ describe('FeatureListComponent', () => {
           NoopAnimationsModule,
           TranslateModule.forRoot()
         ],
-        declarations: [WebsiteFeatureListComponent]
+        providers: [UserService],
+        declarations: [UserComponent]
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WebsiteFeatureListComponent);
+    fixture = TestBed.createComponent(UserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
